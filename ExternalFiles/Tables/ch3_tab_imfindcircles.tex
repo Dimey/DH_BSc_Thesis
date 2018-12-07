@@ -1,0 +1,11 @@
+\begin{tabular}{lp{4cm}p{7cm}}
+		\toprule
+		Parameter				&Mögliche Werte						&Erläuterung	\\
+		\midrule
+			A					&Matrizen vom Datenformat single, double, int8, int16, logical, etc.					&Das Bild, in welchem die Kreise detektiert werden sollen. Muss vorher über die Funktion \lstinline|imread| eingelesen werden.\\
+			radiusRange			&[min max] Ganzzahlige, numerische Zahlenwerte im Bereich von min bis max		&Bezeichnet den Radius-Intervall in dem nach Kreisen gesucht werden soll.\\
+			'ObjectPolarity'		&'bright' (default) 	\newline 'dark'			&Legt fest, ob die gesuchten Kreise dunkel oder hell im Bezug auf den Hintergrund sind.\\
+			'Method'				&'PhaseCode' (default)	\newline 'TwoStage'	&'PhaseCode' [4] ist als Standardmethode eingestellt.\\ 
+			'Sensitivity'		&$0$–$1$	 (default: $0.85$)					&Der Sensitivitätswert beeinflusst den Akkumulator-Array und dessen Sensitivität gegenüber der Wahl der benötigten Stimmabgaben für eine erfolgreiche Kreisdetektion. Mit einem höheren Wert werden tendentiell mehr Kreise gefunden, allerdings steigt auch die Gefahr von falsch positiven Detektionen.\\
+		\bottomrule
+	\end{tabular}

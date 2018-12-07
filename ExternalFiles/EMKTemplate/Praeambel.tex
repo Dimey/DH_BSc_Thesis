@@ -1,0 +1,159 @@
+%********************************************
+%Weitere wichtige Pakete
+\usepackage{amsmath} %Formeln
+\usepackage{graphicx} %Graphikformate
+\usepackage{flafter} %Float-Umgebungen erscheinen frühestens nach ihrer Position im Quellcode
+\usepackage{pdflscape} %Querseiten
+\usepackage{booktabs} % Schöne Unterteilungsstriche für Tabellen: \toprule, \bottomrule
+\usepackage{pdfpages} %pdf-Dateien ganzseitig einbinden -- Alternative zu \includegraphics
+%*******************************************
+
+%********************************************
+% "Kann"-Pakete, jeder muss selbst entscheiden ob er sie verwenden möchte
+%\usepackage{booktabs} %Schöne Unterteilungsstriche für Tabellen (\toprule, \bottomrule, \midrule,...)
+\usepackage{siunitx} %Formatierung für Zahlen, Einheiten, Winkel,...
+\usepackage[babel]{csquotes} %Sprachenspezifische Zitierregeln und Anführungszeichen, Paket wird auch für biblatex benötigt
+\usepackage[style=numeric-comp, sorting=none, alldates=short, abbreviate=false, maxcitenames=2, maxbibnames=99, eprint=false, hyperref=auto, backend=biber]{biblatex} %Literaturverzeichnis, Achtung: Für backend=biber muss man auch biber statt bibtex benutzen! Mehr Informationen: http://biblatex-biber.sourceforge.net/
+%\usepackage{icomma} %Komma ist Dezimaltrenner im Mathemodus
+%\usepackage{tabu} % Etwas komfortablerer Tabellensatz
+%\usepackage{multicol} %Mehrspaltiger Satz
+%\usepackage{pgfplots} %Erstellt Plots von Funktionen oder Messwerten
+%********************************************
+
+%********************************************
+% Hyperref wird sehr empfohlen, muss aber als letztes Paket eingebunden werden
+\ifPDFTeX
+	\usepackage[hyperfootnotes=false]{hyperref}
+\else
+	\usepackage[unicode]{hyperref}
+\fi
+\usepackage[all]{hypcap} %Verweise auf Floats (Abb., Tabellen) zeigen nicht auf die Bildunterschrift sondern auf das obere Ende des Bildes
+%********************************************
+
+%*********** Seitenlayout, TUD-Design *****************************************************
+\geometry{left=35mm, right=20mm, top=20mm, bottom=20mm, nomarginpar, includeall} %Seitenränder EMK-konform setzen
+\setinstitutionlogo{Figures/EMK_Logo}
+%\printpicturesize %Gibt den verfügbaren Platz für das Titelbild auf der Titelseite aus, praktisch um ein Bild zurechtzuschneiden
+%****************************************************************************
+
+%********** Kopf- und Fußzeilen ***********************************************
+\makeatletter
+% Kopf- und Fußzeile für den Hauptteil
+\fancypagestyle{headings}{%
+    \fancyhf{} %Alle Kopf- und Fusszeilen abschalten
+    \fancyhead[L]{\TUD@indentbar[\headwidth]} %Kopfzeile oben links ist TUD-Identitätsbalken über die gesamte Breite
+		\fancyhead[R]{} %Kopfzeile rechts leer
+    \fancyfoot[L]{\footerfont\strut\\\Thesisname\ -- \Nachname} %TBD Fußzeile links
+		\fancyfoot[C]{\tudrule[\headwidth]\footerfont\strut\\\nouppercase\leftmark} %Überkapitel in der Fußzeile zentriert
+		\fancyfoot[R]{\footerfont\strut\\\thepage} %Seitenzahl in der Fußzeile außen
+  }
+% Kopf- und Fußzeile für Kapitelseiten
+\fancypagestyle{chapterheadings}{%
+    \fancyhf{} %Alle Kopf- und Fusszeilen abschalten
+    \fancyhead[L]{\TUD@indentbar[\headwidth]} %TUD-Identitätsbalken
+		\fancyhead[R]{}
+    \fancyfoot[L]{\footerfont\strut\\\Thesisname\ -- \Nachname} %TBD Fußzeile links
+		\fancyfoot[C]{\tudrule[\headwidth]\footerfont\strut\\\nouppercase\leftmark} %Überkapitel in der Fußzeile zentriert
+		\fancyfoot[R]{\footerfont\strut\\\thepage} %Seitenzahl in der Fußzeile außen
+  }
+%Kopf- und Fußzeile für die Zusammenfassung
+\fancypagestyle{zusammenfassung}{%
+	\fancyhf{} %Alle Kopf- und Fusszeilen abschalten
+	\fancyhead[L]{\TUD@indentbar[\headwidth]} %TUD-Identitätsbalken
+	\fancyfoot[C]{\tudrule[\headwidth]\footerfont\strut\\\Thesisname\ -- \Nachname\\Institut EMK -- TU Darmstadt}
+}
+
+\@ifundefined{chapter}{}{ %falls \chapter existiert, wird das folgende ausgeführt
+	\renewcommand*{\chapterpagestyle}{headings} %Kopf- und Fußzeilen auch auf Seiten, auf denen ein neues Kapitel beginnt
+}
+\makeatother
+%****************************************************************************
+
+%*************** Automatische Positionierung von Floatobjekten (Bildern, Tabellen, etc.)*************
+% siehe http://projekte.dante.de/DanteFAQ/FloatPlatzierung
+\makeatletter
+\renewcommand{\fps@figure}{htbp} %Standardplatzierungsoption für figures auf htbp ändern
+\renewcommand{\fps@table}{htbp} %Standardplatzierungsoption für tables auf htbp ändern
+\makeatother
+\setcounter{topnumber}           {3} %Maximale Anzahl Floatobjekte oben auf einer Seite (t), Standard 2
+\setcounter{bottomnumber}        {1} %Maximale Anzahl Floatobjekte unten auf einer Seite (b), Standard 1
+\setcounter{totalnumber}         {4} %Maximale Anzahl Floatobjekte gesamt auf einer Seite, Standard 3
+\renewcommand{\floatpagefraction}{0.8} %Minimaler Seitenanteil für Platzierung page (p), Standard 0.5
+\renewcommand{\topfraction}      {0.9} %Maximaler Seitenanteil der für Platzierung top (t) verwendet werden darf, Standard 0.7
+\renewcommand{\bottomfraction}   {0.6} %Maximaler Seitenanteil der für Platzierung bottom (b) verwendet werden darf, Standard 0.3
+\renewcommand{\textfraction}     {0.15} %Minimaler Seitenanteil Text auf einer Seite, Standard 0.2
+%*******************************************************************************
+
+%*************hyperref*************************************************
+\hypersetup{pdfauthor={\Vorname \Nachname}}
+\addto\extrasngerman{%
+	\renewcommand{\appendixautorefname}{\appendixname}
+	\renewcommand{\sectionautorefname}{Kapitel}
+	\renewcommand{\subsectionautorefname}{Kapitel}
+}
+% Hack von Heiko Oberdieck in de.comp.text.tex, damit autoref bei Verweisen sowohl auf Kapitel als auch auf Unterkapitel im Anhang immer schreibt "siehe Anhang xy"
+% Suchbegriff bei google: in:de.comp.text.tex Autoref im Anhang
+\makeatletter
+\@ifundefined{chapter}{}{
+	\newcommand*{\theappendix}{\thechapter}
+	\newcommand*{\theHappendix}{%
+		\number\value{chapter}.\number\value{section}%
+	}
+	\let\org@hyper@makecurrent\hyper@makecurrent
+	\def\string@section{section}
+	\def\hyper@makecurrent#1{%
+		\expandafter\ifx\@chapapp\appendixname
+			\def\string@temp{#1}%
+			\ifx\string@section\string@temp
+				\org@hyper@makecurrent{appendix}%
+			\else
+				\org@hyper@makecurrent{#1}%
+			\fi
+		\else
+			\org@hyper@makecurrent{#1}%
+		\fi
+	}
+}
+\makeatother
+%**********************************************************************
+
+%********** biblatex, csquotes ********************************************************
+\MakeOuterQuote{"}
+\DefineBibliographyStrings{ngerman}{
+	andothers={et\ \addabbrvspace al\adddot},
+	urlseen={abgerufen am}
+	}
+\renewcommand*{\mkbibnamelast}[1]{\textsc{#1}} %Autorennamen in Kapitälchen
+\renewcommand*{\multinamedelim}{\addsemicolon\space} % Namen im Literaturverzeichnis mit Semikolon getrennt
+\DeclareNameAlias{default}{last-first} % Bei Namen Nachname zuerst
+% Nachnamen, dann Vornamen abgekürzt
+%\DeclareNameFormat{labelname}{%
+  %\usebibmacro{name:last-first}{#1}{#4}{#6}{#8}%
+  %\usebibmacro{name:andothers}}
+%\DeclareNameFormat{sortname}{%
+  %\usebibmacro{name:last-first}{#1}{#4}{#6}{#8}%
+  %\usebibmacro{name:andothers}} 
+% Wesentlicher Titel immer kursiv. Buchtitel, Journaltitel, etc. in Anführungszeichen.
+\DeclareFieldFormat{journaltitle}{\mkbibquote{#1\isdot}}
+\DeclareFieldFormat{maintitle}{\mkbibquote{#1\isdot}}
+\DeclareFieldFormat{booktitle}{\mkbibquote{#1\isdot}}
+\DeclareFieldFormat[article]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[inbook]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[incollection]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[inproceedings]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[patent]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[thesis]{title}{\mkbibemph{#1}} 
+%****************************************************************************
+
+%********* siunitx ***************************************************
+\sisetup{redefine-symbols=false,
+			detect-all,
+			text-micro={{\normalfont\textmu}},
+			math-micro={\mbox{\normalfont\textmu}},
+}
+\addto\extrasngerman{
+	\sisetup{
+	locale=DE
+	}
+}
+%**********************************************************************

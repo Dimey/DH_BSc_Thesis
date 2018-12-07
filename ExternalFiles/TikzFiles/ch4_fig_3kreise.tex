@@ -1,0 +1,59 @@
+\begin{tikzpicture}[
+    scale=2,
+    >=stealth,
+    point/.style = {draw, circle,  fill = black, inner sep = 1pt},
+    dot/.style   = {draw, circle,  fill = black, inner sep = .2pt},
+  ]
+  
+	\coordinate (R1) at (1,1); % Mittelpunkt des ersten Kreises
+	\coordinate (R2) at (1.8,2.4); % Mittelpunkt des zweiten Kreises
+	\coordinate (R3) at (2.4,0.8); % Mittelpunkt des dritten Kreises 
+	
+	% Kreismittelpunkte
+	\node (M1) at (R1) [point, label = {below left:$M_1$}]{};
+	\node (M2) at (R2) [point, label = {above right:$M_2$}]{};
+	\node (M3) at (R3) [point, label = {right:$M_3$}]{};
+	
+	% Bögen
+	% C1
+	\draw[thick] (R1) ++(96.53:1) arc (96.53:306.87:1) node[midway,left]{$C_1$};
+	\draw[dashed] (R1) ++(306.87:1) arc (306.87:456.53:1);
+	
+	% C2
+	\draw[thick] (R2) ++(321.86:1) arc (321.86:563.98:1) node[midway,above]{$C_2$};
+	\draw[dashed] (R2) ++(203.98:1) arc (203.98:321.86:1);
+	
+	% C3
+	\draw[thick] (R3) ++(216.87:1) arc (216.87:439.25:1) node[midway,right]{$C_3$};
+	\draw[dashed] (R3) ++(79.25:1) arc (79.25:216.87:1);
+	
+	%\draw[->] (R1) ++(100:1.2) arc (100:160:1.2) node[midway, sloped, above]{$l$};
+	
+	% Hilfslinie zur Sichtbarmachung der 0°/360° Grenze
+	\draw[dotted] (R1) -- (2,1);
+	
+	% Abstandsvektor d12
+	\draw[thick,->,gray!50] (R1) -- (R2);
+	\node[gray!50] at (1.4,2.15) {$\vec{d_{12}}$};
+	
+	% Abstandsvektor d13
+	\draw[thick,->,gray!50] (R1) -- (R3) node[sloped, below left]{$\vec{d_{13}}$};
+	%\node at (1.4,2.15) {$\vec{d_{12}}$};
+	
+	% Kennzeichnung der Schnittpunkte
+	\node (S12a) at ($ (R1) + (96.53:1) $) [point, label = {[label distance=0.2cm]176:$S_{12}^{(1)}$}]{};
+	\node[gray!50] (S12b) at ($ (R1) + (23.98:1) $) [point, gray!50, label = {[gray!50,label distance=0.1cm]350:$S_{12}^{(2)}$}]{};
+	\node[gray!50] (S13a) at ($ (R1) + (36.87:1) $) [point, gray!50, label = {[gray!50,label distance=0.15cm]90:$S_{13}^{(1)}$}]{};
+	\node (S13b) at ($ (R1) + (306.87:1) $) [point, label = {[label distance=0.2cm]0:$S_{13}^{(2)}$}]{};
+	
+	% Vektoren zu den Schnittpunkten
+	% Vektor M1->S12(1)
+	\draw[thick,->] (R1) -- (S12a);
+	% Vektor M1->S12(2)
+	\draw[thick,->] (R1) -- (S13b);
+	
+	% Winkelpfeile
+	\draw[->] (R1) ++(0:0.5) arc (0:96.53:0.5) node[midway, sloped, below]{$\hat{\gamma}_{1}^{(1)}$};
+	\draw[->] (R1) ++(0:0.75) arc (0:306.87:0.75) node[midway, sloped, below]{$\hat{\gamma}_{1}^{(2)}$};
+	
+\end{tikzpicture}

@@ -1,0 +1,21 @@
+\begin{lstlisting}[language=MATLAB, caption=Berechnung des Startwertes mithilfe binärer Suche, label=lst:binarySearch]
+startPunkt = 0.5;
+schrittWeite = 0.25;
+
+epsilon = 0.01
+
+while schrittWeite > epsilon
+	foundCircles = imfindcircles(image,[radius-floor(radius*0.19) ... 
+		radius+floor(radius*0.19)],'ObjectPolarity','dark', ...
+		'Method','twostage','Sensitivity',startPunkt);
+	if ~isempty(foundCircles)
+		startPunkt = startPunkt - schrittWeite;
+	else
+		startPunkt = startPunkt + schrittWeite;
+	end
+
+	schrittWeite = schrittWeite/2;
+end
+
+startPunkt = round(startPunkt,2) + 0.01;
+\end{lstlisting}

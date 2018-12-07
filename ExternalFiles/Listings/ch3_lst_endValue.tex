@@ -1,0 +1,26 @@
+\begin{lstlisting}[language=MATLAB, caption=Berechnung des Endwertes, label=lst:endwertSuche]
+foundCircles = zeros(1,1000);
+arrayCounter = 0;
+	
+for i = startPunkt: 0.01: 0.99
+	arrayCounter = arrayCounter + 1;
+	[centers,~] = imfindcircles(image,[radius-floor(radius*0.19) ...
+		radius+floor(radius*0.19)],'ObjectPolarity','dark', ...
+		'Method','twostage','Sensitivity',i);
+	if length(centers) < 500 % sinnvolle Maximalanzahl in einem Bild
+		foundCircles(arrayCounter) = length(centers);
+	else
+		break;
+	end
+end
+
+% Leite diskrete Funktion ab
+foundCirclesDiff = diff(foundCircles);
+
+% Bestimme Median der Menge
+medianValue = median(foundCirclesDiff);
+
+% Bestimme die Stelle, an der der Anstieg der Anzahl der gefundenen 
+indexOfSensitivity = find(foundCirclesDiff>medianValue*5, 1, 'first');
+endPunkt = startPunkt + 0.01* indexOfSensitivity;
+\end{lstlisting}

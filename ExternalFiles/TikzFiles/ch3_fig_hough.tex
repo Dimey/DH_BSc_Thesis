@@ -1,0 +1,61 @@
+\begin{tikzpicture}[scale=1,point/.style = {draw, circle,  fill = black, inner sep = 1pt},>=stealth]
+    % Erstes Koordinatessystem
+    \def\abstand{6}
+    \coordinate (y) at (0,5);
+    \coordinate (x) at (5,0);
+    \draw[<->] (y) node[above] {$y$} -- (0,0) --  (x) node[right]{$x$};
+   	
+   	% Kreis + Mittelpunkt + Beschriftung des Mittelpunkts
+   	\coordinate(M1) at (2.5,2.5);
+   	\node (M) at (M1) [point]{};
+   	\draw[thick] (M1) ++(0:1) arc (0:360:1) node[pos=0.35, above left]{$C$};
+   	
+   	% 3 Punkte auf dem Kreis und eingezeichneter Radius
+   	\node (P1) at ($ (M1) + (60:1) $) [point, label = {above right:$p_1$}]{};
+   	\node (P2) at ($ (M1) + (160:1) $) [point, label = {left:$p_2$}]{};
+   	\node (P3) at ($ (M1) + (280:1) $) [point, label = {below:$p_3$}]{};
+   	\draw[->] (M1) -- ($ (M1) + (200:1) $) node[midway, below]{$r_0$};
+
+    % Zweites Koordinatensystem
+    \coordinate (y2) at (\abstand,5);
+    \coordinate (x2) at (5+\abstand,0);
+    \draw[<->] (y2) node[above] {$b$} -- (\abstand,0) --  (x2) node[right] {$a$};
+    
+    % Füge noch eine graue Boxen zur Kennzeichnung der Stimmabgaben hinzu
+	\fill [gray!70] (\abstand + 2.4,2.4) rectangle (\abstand +2.64,2.64);
+%	\fill [gray!30] (\abstand + 1.92,3.6) rectangle (\abstand +1.92+0.24,3.6+0.24);
+%	\fill [gray!30] (\abstand + 7*0.24,7*0.24) rectangle (\abstand +8*0.24,8*0.24);
+%	\fill [gray!30] (\abstand + 13*0.24,9*0.24) rectangle (\abstand +14*0.24,10*0.24);
+	%\fill [gray!30] (\abstand + 9*0.24,10*0.24) rectangle (\abstand +10*0.24,11*0.24);
+	%\fill [gray!30] (\abstand + 11*0.24,10*0.24) rectangle (\abstand +12*0.24,11*0.24);
+    
+    % Zeichne Gitter in das zweite (rechte) Koordinatensystem
+   	\draw[step=.24cm,gray,very thin] (\abstand,0) grid (4.8 + \abstand,4.8cm);
+     
+    % 3 Kreise
+    \node (P1p) at ($ (P1) + (\abstand,0) $) [point, label = {above right:$\hat{p}_1$}]{};
+    \node (P2p) at ($ (P2) + (\abstand,0) $) [point, label = {right:$\hat{p}_2$}]{};
+   	\node (P3p) at ($ (P3) + (\abstand,0) $) [point, label = {below:$\hat{p}_3$}]{};
+   	\draw[thick] (P1p) ++(0:1) arc (0:360:1) node[pos=0.14, above right]{$C_1$};
+   	\draw[thick] (P2p) ++(0:1) arc (0:360:1) node[pos=0.3, above left]{$C_2$};
+   	\draw[thick] (P3p) ++(0:1) arc (0:360:1) node[pos=0.9, below right]{$C_3$};
+   	\draw[->] (P3p) -- ($ (P3p) + (15:1) $) node[midway, above]{$r_0$};
+   	
+   	% Zeichne übergreifende Pfeile ein
+   	\draw[dashed,->] (P1) -- (P1p);
+   	\draw[dashed,->] (P2) -- (P2p);
+   	\draw[dashed,->] (P3) -- (P3p);
+   	
+   	% Markiere gefundenen Mittelpunkt des Kreises und führe einen Pfeil zurück
+   	\node (M1p) at ($ (M1) + (\abstand,0) $) [point]{};
+   	\draw[->,thick, dashed] (M1p)  edge [bend left=15]   node[above] {localized} (M1);
+   	
+   	% Textblock zum gefundenen Mittelpunkt
+   	\node[draw,rectangle,text width=6em,text centered,fill=white](T1) at ($ (M1p) + (3,0) $) {gefundene Kreisposition "3 Treffer"};
+   	\draw[thick, dotted] ($ (T1) - (1.3,0) $)  edge [bend right=30] (M1p);
+   	
+   	% Überschriften
+   	\node[thick,text width=7em,text centered](T2) at ($ (M1) + (0,2.9) $) {\textbf{Bildraum} (Image space)};
+   	\node[thick,text width=7em,text centered](T3) at ($ (M1p) + (0,2.9) $) {\textbf{Parameterraum} (Hough space)};
+   	
+\end{tikzpicture}

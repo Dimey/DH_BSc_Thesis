@@ -1,0 +1,43 @@
+\begin{tikzpicture}[
+    scale=1.5,
+    >=stealth,
+    point/.style = {draw, circle,  fill = black, inner sep = 1pt},
+    dot/.style   = {draw, circle,  fill = black, inner sep = .2pt},
+  ]
+  
+	\coordinate (R1) at (3.2,4); % Mittelpunkt des ersten Kreises
+	\coordinate (R2) at (1.6,3.6); % Mittelpunkt des zweiten Kreises
+	\coordinate (R3) at (4.2,4.4); % Mittelpunkt des dritten Kreises
+	\coordinate (R4) at (4.6,3); % Mittelpunkt des vierten Kreises
+	\coordinate (R5) at (2,6); % Mittelpunkt des fünften Kreises
+	
+	% Kreismittelpunkte
+	\node (M1) at (R1) [point, label = {below:$M_1$}]{};
+	\node (M2) at (R2) [point, label = {below:$M_2$}]{};
+	\node (M3) at (R3) [point, label = {right:$M_3$}]{};
+	\node (M4) at (R4) [point, label = {below:$M_4$}]{};
+	\node (M5) at (R5) [point, label = {below:$M_5$}]{};
+	
+	% Bögen
+	% C1
+	\draw[thick] (R1) ++(79.22:1) arc (79.22:159.59:1);
+	\draw[thick] (R1) ++(228.49:1) arc (228.49:293.81:1) node[midway, below]{$C_1$};
+	\draw[dashed] (R1) ++(159.59:1) arc (159.59:228.49:1);
+	\draw[dashed] (R1) ++(293.81:1) arc (293.81:439.22:1);
+	
+	% C2
+	\draw[thick] (R2) ++(48.49:1) arc (48.49:339.59:1) node[midway, left]{$C_2$};
+	\draw[dashed] (R2) ++(339.59:1) arc (339.59:408.49:1);
+	
+	% C3
+	\draw[thick] (R3) ++(329.23:1) arc (329.23:504.38:1) node[midway, above right]{$C_3$};
+	\draw[dashed] (R3) ++(144.38:1) arc (144.38:329.23:1);
+	
+	% C4
+	\draw[thick] (R4) ++(175.12:1) arc (175.12:422.67:1) node[midway, below right]{$C_5$};
+	\draw[dashed] (R4) ++(62.67:1) arc (62.67:175.12:1);
+	
+	% C5
+	\draw[thick] (R5) ++(0:1) arc (0:360:1) node[midway, left]{$C_5$};
+	
+\end{tikzpicture}

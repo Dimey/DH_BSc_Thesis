@@ -1,0 +1,49 @@
+\begin{tikzpicture}[
+    scale=3,
+    >=stealth,
+    point/.style = {draw, circle,  fill = black, inner sep = 1pt},
+    dot/.style   = {draw, circle,  fill = black, inner sep = .2pt},
+  ]
+  	\clip (0.5,0.7) rectangle (2.25,2.6);
+	\coordinate (R1) at (1,1); % Mittelpunkt des ersten Kreises
+	\coordinate (R2) at (1.8,2.4); % Mittelpunkt des zweiten Kreises
+	
+	% Kreismittelpunkte
+	\node (M1) at (R1) [point, label = {below left:$M_1$}]{};
+	\node (M2) at (R2) [point, label = {above right:$M_2$}]{};
+	
+	% Bögen
+	% C1
+	\draw[thick] (R1) ++(96.53:1) arc (96.53:383.98:1);
+	\draw[dashed] (R1) ++(23.98:1) arc (23.98:96.53:1);
+	
+	% C2
+	\draw[thick] (R2) ++(276.53:1) arc (276.53:563.98:1);
+	\draw[dashed] (R2) ++(203.98:1) arc (203.98:276.53:1);
+		
+	% Abstandsvektor d12
+	\draw[thick,->,gray!50] (R1) -- (R2);
+	\node[gray!50] at (1.4,2.15) {$\vec{d_{12}}$};
+	
+	% Kennzeichnung der Schnittpunkte
+	\node (S12a) at ($ (R1) + (96.53:1) $) [point, label = {[label distance=0.2cm]176:$S_{12}^{(1)}$}]{};
+	\node (S12b) at ($ (R1) + (23.98:1) $) [point, label = {[label distance=0.2cm]350:$S_{12}^{(2)}$}]{};
+	
+	% Vektoren zu den Schnittpunkten
+	% Vektor M1->S12(1)
+	\draw[thick,->] (R1) -- (S12a);
+	% Vektor M1->S12(2)
+	\draw[thick,->] (R1) -- (S12b);
+	
+	% y-Einheitsvektor
+	\draw[thick,->] (R1) -- (1.2,1) node[below, midway]{$\vec{e_x}$};
+	
+	% Hilfslinie zur Sichtbarmachung der 0°/360° Grenze
+	\draw[dotted] (R1) -- (2.7,1);
+	
+	% Winkelpfeile
+	\draw[->] (R1) ++(0:0.4) arc (0:96.53:0.4) node[midway, sloped, above]{$\gamma_{12}^{(1)}$};
+	\draw[->] (R1) ++(0:0.6) arc (0:23.98:0.6) node[midway, sloped, above]{$\gamma_{12}^{(2)}$};
+	\draw[->] (R1) ++(60.26:0.75) arc (60.26:96.53:0.75) node[midway, sloped, above]{$\beta_{12}$};
+	
+\end{tikzpicture}

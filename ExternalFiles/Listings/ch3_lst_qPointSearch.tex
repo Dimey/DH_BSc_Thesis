@@ -1,0 +1,21 @@
+\begin{lstlisting}[language=MATLAB, caption=Arbeitspunktsuche, label=lst:arbeitspunktsuche]
+foundCircles = zeros(1, 1000);
+arrayCounter = 1;
+
+for i=startPunkt:0.005:endPunkt
+	[centers,~] = imfindcircles(image,[radius-floor(radius*0.19) ...
+		radius+floor(radius*0.19)],'ObjectPolarity','dark', ...
+		'Method','twostage','Sensitivity',i);
+	foundCircles(arrayCounter) = length(centers);
+	arrayCounter = arrayCounter + 1;
+end
+
+x = startPunkt+0.005:0.005:endPunkt;
+y = foundCircles(1:arrayCounter-1);
+differential = diff(y);
+
+indicesOfLocalMinima = islocalmin(differential);
+localMinima = x(indicesOfLocalMinima);
+	
+sensitivityPoint = localMinima(end);
+\end{lstlisting}

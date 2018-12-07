@@ -1,0 +1,44 @@
+\BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Gliederung der Arbeit}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Werkzeuge}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Auswahl der zu untersuchenden Bildern}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Vorbereitung der REM-Aufnahmen}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Bildzuschnitt}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Anpassung der Aufl\366sung}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Distanzmessung im Bild: Bestimmung des Skalierungsfaktors}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Kanten- und Kreisdetektion: Informationsextraktion}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Hough-Transformation f\374r Kreise}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Anwendung von imfindcircles}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.2.1}{Berechnung der Sensitivit\344t}{section.3.2}% 13
+\BOOKMARK [1][-]{section.3.3}{Kantendetektion}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.3.1}{Canny Algorithmus}{section.3.3}% 15
+\BOOKMARK [0][-]{chapter.4}{Umfangs- und Oberfl\344chenberechnung}{}% 16
+\BOOKMARK [1][-]{section.4.1}{Geometrische Umfangsberechnung}{chapter.4}% 17
+\BOOKMARK [2][-]{subsection.4.1.1}{\334berlappung zweier Kreise}{section.4.1}% 18
+\BOOKMARK [2][-]{subsection.4.1.2}{\334berlappung beliebiger Anzahl Kreise}{section.4.1}% 19
+\BOOKMARK [2][-]{subsection.4.1.3}{Implementierung}{section.4.1}% 20
+\BOOKMARK [1][-]{section.4.2}{Pixelbasierte Umfangs- und Oberfl\344chenberechnung}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.2.1}{Vom Kantenbild zur Oberfl\344che}{section.4.2}% 22
+\BOOKMARK [2][-]{subsection.4.2.2}{Fehler durch Kreisrasterung}{section.4.2}% 23
+\BOOKMARK [2][-]{subsection.4.2.3}{Fehlerkompensation}{section.4.2}% 24
+\BOOKMARK [2][-]{subsection.4.2.4}{Vor- und Nachteile}{section.4.2}% 25
+\BOOKMARK [0][-]{chapter.5}{Ergebnisse und Vergleich}{}% 26
+\BOOKMARK [1][-]{section.5.1}{Festlegung der Bewertungskriterien}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.2}{Ergebnisse}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.5.2.1}{Variation der Helligkeit}{section.5.2}% 29
+\BOOKMARK [2][-]{subsection.5.2.2}{Variation des Kontrasts}{section.5.2}% 30
+\BOOKMARK [2][-]{subsection.5.2.3}{Aufl\366sung}{section.5.2}% 31
+\BOOKMARK [1][-]{section.5.3}{Fazit}{chapter.5}% 32
+\BOOKMARK [0][-]{chapter.6}{Weiterf\374hrende Arbeit}{}% 33
+\BOOKMARK [1][-]{section.6.1}{Allgemeine Hough-Transformation}{chapter.6}% 34
+\BOOKMARK [1][-]{section.6.2}{Hinzunahme weiterer quantifizierbarer Gr\366\337en}{chapter.6}% 35
+\BOOKMARK [1][-]{section.6.3}{Parallelisierung des Algorithmus}{chapter.6}% 36
+\BOOKMARK [1][-]{section.6.4}{Machine Learning}{chapter.6}% 37
+\BOOKMARK [0][-]{chapter.7}{Literaturverzeichnis}{}% 38
+\BOOKMARK [0][-]{chapter.7}{Anhang}{}% 39
+\BOOKMARK [0][-]{appendix.A}{Code}{}% 40
+\BOOKMARK [1][-]{appendix.1.1}{calculateSurfaceByDIP.m}{appendix.A}% 41
+\BOOKMARK [1][-]{appendix.1.2}{calculateSensitivityPoint.m}{appendix.A}% 42
+\BOOKMARK [1][-]{appendix.1.3}{CircumferenceCalculation.m}{appendix.A}% 43
+\BOOKMARK [0][-]{appendix.B}{Rasterelektronenmikroskop Aufnahmen}{}% 44

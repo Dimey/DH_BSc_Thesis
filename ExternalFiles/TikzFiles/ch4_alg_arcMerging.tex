@@ -1,0 +1,41 @@
+\begin{algorithmic}[1]
+    \Procedure{MergeArcsForCircle}{$\textit{circle}$}%\Comment{The g.c.d. of a and b}
+    \State \textsc{Step 1 – collect start and end points of all arcs}
+    \State Create an empty list $\textit{StartPointsOnCircle} \gets \{\}$
+	\State Create an empty list $\textit{EndPointsOnCircle} \gets \{\}$
+	\For{all arcs $(\gamma^{(1)}, \gamma^{(2)})$ in \textit{circle}}
+		\State Add $\gamma^{(1)}$ to \textit{StartPointsOnCircle}
+		\State Add $\gamma^{(2)}$ to \textit{EndPointsOnCircle}
+	\EndFor
+	\State Sort \textit{StartPointsOnCircle} and \textit{EndPointsOnCircle} by ascending order
+	\State Remove duplicates in \textit{StartPointsOnCircle} and \textit{EndPointsOnCircle}
+	\\
+	\State \textsc{Step 2 – remove start and end points which are located in overlapped areas}
+	\For{all arcs $(\gamma^{(1)}, \gamma^{(2)})$ in \textit{circle}}
+		\If{$\gamma^{(2)} - \gamma^{(1)} > 0$} %\Comment{Arc range consists of one segment}
+			\State Delete all values $s_i$ from \textit{StartPointsOnCircle} if $s_i < \gamma^{(1)}$ \textbf{or} $s_i > \gamma^{(2)}$
+			\State Delete all values $e_i$ from \textit{EndPointsOnCircle} if $e_i < 				\gamma^{(1)}$ \textbf{or} $e_i > \gamma^{(2)}$
+		\Else %\Comment{Arc range consists of two segments}
+			\State Delete all values $s_i$ from \textit{StartPointsOnCircle} if $s_i < 				\gamma^{(1)}$ \textbf{and} $s_i > \gamma^{(2)}$
+			\State Delete all values $e_i$ from \textit{EndPointsOnCircle} if $e_i < 				\gamma^{(1)}$ \textbf{and} $e_i > \gamma^{(2)}$
+		\EndIf
+	\EndFor
+	\\
+	\State \textsc{Step 3 – stitch start and end points in the right way together}
+	\State Create an empty list $\textit{MergedArcsOnCircle} \gets \{\}$
+	\State Set up a counter $k \gets 1$ 
+	\For{all values $\gamma^{(1)}$ in \textit{StartPointsOnCircle}}
+		\State Iterate over \textit{EndPointsOnCircle},
+			   find first value $e$ which meets $e > \gamma^{(1)}$
+		\If{$e \neq 0$}
+			\State Create arc $\hat{b}_i = (\hat{\gamma}_i^{(1)},\hat{\gamma}_i^{(2)}) \gets (\gamma^{(1)},e)$
+			\State \textit{MergedArcsOnCircle}$(k) \gets \hat{b}_i$
+			\State Increment $k$
+		\Else
+			\State Create arc $\hat{b}_i = (\hat{\gamma}_i^{(1)},\hat{\gamma}_i^{(2)}) \gets (\gamma^{(1)},$\textit{EndPointsOnCircle}$(1))$
+			\State \textit{MergedArcsOnCircle}$(k) \gets \hat{b}_i$
+		\EndIf
+	\EndFor
+	\State \textbf{return} $\textit{MergedArcsOnCircle}$
+    \EndProcedure
+  \end{algorithmic}
